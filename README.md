@@ -60,7 +60,7 @@ For a more in-depth example, see this [notebook](https://adamvvu.github.io/survi
 
 With discrete-time survival models, the outcome space is discretized into a finite number of support points $\{t_1,\dots, t_k\}$ with $t_{i-1} < t_{i}$ such that\
 $$\text{supp}(Y) = \bigcup_{i=1}^{k} (t_{i-1}, t_i]$$\
-Deep learning approaches to survival analysis often model the conditional survival probabilities $ P(Y > t_j|X, Y > t_{j-1})$, or the probability of surviving each time interval *given* that an individual has survived up to the previous interval. In this library, the outputs of the neural network are instead a $k$-dimensional vector that models the survival function directly:\
+Deep learning approaches to survival analysis often model the conditional survival probabilities $P(Y > t_j|X, Y > t_{j-1})$, or the probability of surviving each time interval *given* that an individual has survived up to the previous interval. In this library, the outputs of the neural network are instead a $k$-dimensional vector that models the survival function directly:\
 $$\Big( P(Y > t_1|X), P(Y > t_2|X), \dots, P(Y > t_k|X) \Big)$$\
 which is done by enforcing monotonicity restrictions in the final layer, such that $P(Y > t_{i-1}|X) \geq P(Y > t_i|X)$. The main reasoning for doing so is that for prediction tasks, interest is typically on statistics based on features of $P(Y > t_i|X)$. We can of course still obtain the marginal survival probabilities using the conventional approach with\
 $$P(Y > t_j|X) = \prod_{i}^{j} P(Y > t_i|X, Y > t_{i-1})$$\
