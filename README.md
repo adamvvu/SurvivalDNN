@@ -9,14 +9,14 @@ Survival Analysis using Deep Learning for Prediction
 
 ## **SurvivalDNN**
 
-[Documentation](https://adamvvu.github.io/survivaldnn/docs/)
+[Documentation](https://adamvvu.github.io/SurvivalDNN/docs/)
 
 SurvivalDNN is a library for survival analysis using deep learning, with a focus on prediction tasks and ease-of-use. Survival analysis models the time until events occur, for example the failure time of industrial components, patient survival times in medicine, customer churn in business, and credit risk in finance. 
 
 ### Getting Started
 
 Install from PyPi:
-`$ pip install survivaldnn`
+`$ pip install SurvivalDNN`
 
 #### Usage
 
@@ -52,7 +52,7 @@ model.predict(X, elapsed)
 # Estimated full survival function and support
 survFunc, support = model.predict_survival_function(X)
 ```
-For a more in-depth example, see this [notebook](https://adamvvu.github.io/survivaldnn/examples/Example.html).
+For a more in-depth example, see this [notebook](https://adamvvu.github.io/SurvivalDNN/examples/Example.html).
 
 #### Technical Note
 
