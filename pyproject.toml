@@ -22,7 +22,7 @@ dependencies = [
 classifiers = [
     'Intended Audience :: Science/Research',
 	'Topic :: Scientific/Engineering :: Information Analysis',
-	'Programming Language :: Python :: 3 ',
+	'Programming Language :: Python :: 3',
 	'Operating System :: OS Independent',
 	'License :: OSI Approved :: MIT License'
 ]
