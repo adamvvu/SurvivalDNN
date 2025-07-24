@@ -16,7 +16,7 @@ with open(path.join(currPath, 'survivaldnn', '__init__.py')) as f:
 
 setup(
     name='SurvivalDNN',
-    description='Survival Analysis using Deep Learning with TensorFlow',
+    description='Survival Analysis using Deep Learning for Prediction',
     version=version,
     long_description=long_description,
     long_description_content_type='text/markdown',
