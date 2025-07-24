@@ -58,13 +58,11 @@ For a more in-depth example, see this [notebook](https://adamvvu.github.io/survi
 
 *This library builds on and draws from other proposed methodologies such as DeepSurv (Katzman et al., 2018), Nnet-Survival (Gensheimer and Narasimhan, 2018), and DNNSurv (Zhao and Feng, 2021), with a few [modifications](#technical-note) for practical usage, stability during training, and efficiency.*
 
-With discrete-time survival models, the outcome space is discretized into a finite number of support points $\{t_1,\dots, t_k\}$ with $t_{i-1} < t_{i}$ such that
+With discrete-time survival models, the outcome space is discretized into a finite number of support points $\{t_1,\dots, t_k\}$ with $t_{i-1} < t_{i}$ such that\
 $$ \text{supp}(Y) = \bigcup_{i=1}^{k} (t_{i-1}, t_i] $$
-Deep learning approaches to survival analysis often model the conditional survival probabilities $ P(Y > t_j|X, Y > t_{j-1})$, or the probability of surviving each time interval *given* that an individual has survived up to the previous interval. In this library, the outputs of the neural network are instead a $k$-dimensional vector that models the survival function directly:
-$$
-\Big( P(Y > t_1|X), P(Y > t_2|X), \dots, P(Y > t_k|X) \Big)
-$$
-which is done by enforcing monotonicity restrictions in the final layer, such that $P(Y > t_{i-1}|X) \geq P(Y > t_i|X)$. The main reasoning for doing so is that for prediction tasks, interest is typically on statistics based on features of $P(Y > t_i|X)$. We can of course still obtain the marginal survival probabilities using the conventional approach with
+Deep learning approaches to survival analysis often model the conditional survival probabilities $ P(Y > t_j|X, Y > t_{j-1})$, or the probability of surviving each time interval *given* that an individual has survived up to the previous interval. In this library, the outputs of the neural network are instead a $k$-dimensional vector that models the survival function directly:\
+$$ \Big( P(Y > t_1|X), P(Y > t_2|X), \dots, P(Y > t_k|X) \Big) $$
+which is done by enforcing monotonicity restrictions in the final layer, such that $P(Y > t_{i-1}|X) \geq P(Y > t_i|X)$. The main reasoning for doing so is that for prediction tasks, interest is typically on statistics based on features of $P(Y > t_i|X)$. We can of course still obtain the marginal survival probabilities using the conventional approach with\
 $$ P(Y > t_j|X) = \prod_{i}^{j} P(Y > t_i|X, Y > t_{i-1}) $$
 However this can be numerically unstable and can compound small errors especially when the number of support points is large. By modeling the survival function directly with the additional structure from enforcing monotonicity, this implementation can be more stable during training as well as being more computationally efficient for large-scale prediction tasks.
 
